@@ -1,0 +1,7 @@
+digits
+product
+itertools
+string
+ascii_lowercase
+digits
+punctuation
