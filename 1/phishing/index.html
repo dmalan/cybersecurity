@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)https://www.pin1.harvard.edu/cas/login?service=https%3A%2F%2Fcanvas.harvard.edu%2Flogin%2Fcas -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>HarvardKey - Harvard University Authentication Service</title>
+
+
+
+    <link rel="stylesheet" type="text/css" href="./static/normalize.css"><link rel="stylesheet" type="text/css" href="./static/bootstrap-grid.min.css"><link rel="stylesheet" type="text/css" href="./static/material-components-web.min.css"><link rel="stylesheet" type="text/css" href="./static/materialdesignicons.min.css"><link rel="stylesheet" type="text/css" href="./static/cas.css"><link rel="shortcut icon" href="https://www.pin1.harvard.edu/cas/favicon.ico"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></head>
+
+<body class="login mdc-typography">
+<script type="text/javascript" src="./static/jquery.min.js"></script>
+<script type="text/javascript" src="./static/es5-shim.min.js"></script>
+    <script type="text/javascript" src="./static/css-vars-ponyfill.min.js"></script>
+    <script type="text/javascript" src="./static/material-components-web.min.js"></script>
+<script type="text/javascript" src="./static/cas.js"></script>
+<script type="text/javascript" src="./static/material.js"></script>
+<script>
+    if (typeof resourceLoadedSuccessfully === "function") {
+        resourceLoadedSuccessfully();
+    }
+    $(function() {
+        typeof cssVars === "function" && cssVars({onlyLegacy: true});
+    })
+</script>
+
+<script>
+    /*<![CDATA[*/
+
+    var trackGeoLocation = false;
+
+    var googleAnalyticsTrackingId = null;
+
+    if (googleAnalyticsTrackingId != null && googleAnalyticsTrackingId != '') {
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', googleAnalyticsTrackingId, 'auto');
+        ga('send', 'pageview');
+    }
+
+    /*]]>*/
+</script>
+<div>
+
+    <header id="app-bar" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-elevation--z4">
+        <nav class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="cas-brand mx-auto">
+                    <span class="sr-only text-left">Harvard University</span>
+                    <img class="cas-logo" alt="Harvard University logo with shield" title="Harvard University" src="./static/harvard-logo.svg"></span>
+            </section>
+            <section class="mdc-top-app-bar__section">
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                <div class="mdc-menu-surface--anchor">
+                    <button id="menuButton" class="mdc-icon-button mdc-top-app-bar__navigation-icon" aria-haspopup="true" aria-controls="navMenu" value="SIGN IN"> <span class="mdi mdi-account"></span> <span class="sr-only">menu</span> </button>
+                    <div id="navMenu" class="mdc-menu mdc-menu-surface">
+                        <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                            <li> <a href="https://key.harvard.edu/manage-account/auto-choose" class="mdc-list-item" role="menuitem" tabindex="-1"> <span class="mdc-list-item__ripple"></span> <i class="mdi mdi-cog material-icons mdc-list-item__graphic" aria-hidden="true"></i> <span class="mdc-list-item__text">Account Settings</span> </a> </li>
+                            <li> <a href="https://www.pin1.harvard.edu/cas/logout" class="mdc-list-item" role="menuitem" tabindex="-1"> <span class="mdc-list-item__ripple"></span> <i class="mdi mdi-logout material-icons mdc-list-item__graphic" aria-hidden="true"></i> <span class="mdc-list-item__text">Logout</span> </a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </nav>
+
+    </header>
+
+
+    <script>var countMessages = 0;</script>
+    <div class="mdc-dialog cas-notification-dialog" id="cas-notification-dialog" role="alertdialog" aria-modal="true" aria-labelledby="notif-dialog-title" aria-describedby="notif-dialog-content">
+
+        <div class="mdc-dialog__container">
+            <div class="mdc-dialog__surface">
+                <h1 class="mdc-dialog__title mt-lg-2" id="notif-dialog-title">
+                    Notifications
+                </h1>
+                <div class="mdc-dialog__content" id="notif-dialog-content">
+                    </div>
+                <footer class="mdc-dialog__actions">
+                    <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" data-mdc-dialog-button-default="">
+                        <span class="mdc-button__label">OK</span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+    </div>
+
+    <script type="text/javascript">
+
+        (function (material) {
+            var header = {
+                init: function () {
+                    material.autoInit();
+                },
+                checkCaps: function (ev) {
+                    var s = String.fromCharCode(ev.which);
+                    if (s.toUpperCase() === s && s.toLowerCase() !== s && !ev.shiftKey) {
+                        ev.target.parentElement.classList.add('caps-on');
+                    } else {
+                        ev.target.parentElement.classList.remove('caps-on');
+                    }
+                },
+                attachNotificationDialog: function () {
+                    var element = document.getElementById('cas-notification-dialog');
+                    if (element != null) {
+                        return material.dialog.MDCDialog.attachTo(element);
+                    }
+                    return undefined;
+                },
+                attachNotificationToggle: function (dialog) {
+                    var btn = document.getElementById('cas-notifications-menu');
+                    if (btn != null) {
+                        btn.addEventListener('click', function () {
+                            dialog.open();
+                        });
+                    }
+                }
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+                header.init();
+                if (countMessages == 0) {
+                    window.jQuery('#notifications-count').remove();
+                } else {
+                    window.jQuery('#notifications-count').text("(" + countMessages + ")")
+                }
+            });
+        })(mdc);
+    </script>
+</div>
+
+<div class="mdc-drawer-scrim"></div>
+
+<div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust d-flex justify-content-center">
+    <main role="main" id="main-content" class="w-100">
+        <div class="alert alert-secondary" role="alert">
+            </div>
+        <div id="content" class="d-flex justify-content-center mt-4">
+
+    <div class="d-flex justify-content-center flex-md-row flex-column mdc-card mdc-card-content w-lg-25">
+        <section id="loginForm" class="login-section login-form">
+            <div class="d-flex flex-column justify-content-between m-auto">
+                <h1><span class="hk-wm-a">HARVARD</span><span class="hk-wm-b">KEY</span><br style="line-height:0; font-size:0;"><span style="line-height:0">Sign In</span></h1>
+            </div>
+            <div class="d-flex flex-column justify-content-between m-auto">
+        <div class="form-wrapper">
+            <form method="post" id="fm1" action="https://www.pin1.harvard.edu/cas/login">
+
+                <section class="cas-field my-3" id="usernameSection">
+                    <div class="d-flex">
+
+                        <label for="username" class="mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating">
+                            <input class="mdc-text-field__input" id="username" size="25" type="text" autofocus="" autocomplete="username" name="username" value=""><span class="mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched">
+                                <span class="mdc-notched-outline__leading"></span>
+                                <span class="mdc-notched-outline__notch" style="width: 86px;">
+                                  <span class="mdc-floating-label mdc-floating-label--float-above" style="">Email Address</span>
+                                </span>
+                                <span class="mdc-notched-outline__trailing"></span>
+                              </span>
+                        </label>
+
+                        <script type="text/javascript">
+                            /*<![CDATA[*/
+                            var username = "";
+                            var disabled = false;
+
+                            if (username != null && username !== '') {
+                                $('#username').val(username);
+                                if (disabled) {
+                                    $('#usernameSection').hide();
+                                }
+                            }
+                            /*]]>*/
+                        </script>
+                    </div>
+                </section>
+
+                <section class="cas-field my-3 mdc-input-group" id="passwordSection">
+                    <div class="mdc-input-group-field mdc-input-group-field-append">
+                        <div class="d-flex caps-check">
+
+                            <label for="password" class="mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating">
+
+                                <input class="mdc-text-field__input pwd" type="password" id="password" size="25" autocomplete="current-password" name="password" value=""><span class="mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched">
+                                        <span class="mdc-notched-outline__leading"></span>
+                                        <span class="mdc-notched-outline__notch" style="width: 61.25px;">
+                                          <span class="mdc-floating-label mdc-floating-label--float-above" style="">Password</span>
+                                        </span>
+                                        <span class="mdc-notched-outline__trailing"></span>
+                                    </span>
+                            </label>
+                            <button id="toggle-password" class="reveal-password material-icons mdc-text-field__icon mdc-text-field__icon--trailing mdi mdi-eye reveal-password-icon" type="button" aria-label="Show password as plain text"><span id="pbtxt" class="sr-only">Show password</span></button>
+
+                        </div>
+
+                        <div class="mdc-text-field-helper-line caps-warn">
+                            <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg text-danger">
+                                <span>CAPSLOCK key is turned on!</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cas-field my-3">
+                    </section>
+
+                <section class="cas-field">
+
+                    <div>
+            </div>
+
+                    <input type="hidden" name="execution" value="value"><input type="hidden" name="_eventId" value="submit"><input type="hidden" name="geolocation"></section>
+
+                <div>
+
+        <button class="mdc-button mdc-button--raised w-100" name="submit" accesskey="l" type="submit" value="SIGN IN">
+            <span class="mdc-button__label">SIGN IN</span>
+        </button>
+
+        </div>
+
+            </form>
+
+            <hr class="my-4"><div id="pmlinks" class="my-2">
+    <br><div>
+        <br><span class="fa fa-question-circle"></span>
+        <a class="btn btn-link" id="forgotPasswordExternalLink" href="https://key.harvard.edu/account-recovery/forgot-password">Forgot your password?</a>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                /*<![CDATA[*/
+                var i = "One moment please..."
+                var j = "SIGN IN"
+                    /*]]>*/
+                    $(window).on('pageshow', function () {
+                        $(':submit').prop('disabled', false);
+                        $(':submit').attr('value', j);
+                    });
+
+                window.setTimeout(() => {
+                    try {
+                        document
+                            .querySelectorAll('.mdc-text-field__input:-webkit-autofill')
+                            .forEach(el => {
+                                if (el.id == "password") {
+                                    const textField = el.parentNode;
+                                    const label = textField.querySelector('.mdc-floating-label');
+                                    if (label) {
+                                        label.classList.add('mdc-floating-label--float-above');
+                                    }
+                                    const notchedSpan1 = textField.querySelector('.mdc-notched-outline');
+                                    if (notchedSpan1) {
+                                        notchedSpan1.classList.add('mdc-notched-outline--notched');
+                                    }
+                                    const notchedSpan2 = textField.querySelector('.mdc-notched-outline__notch');
+                                    if (notchedSpan2) {
+                                        notchedSpan2.setAttribute("style", "width: 61.25px;");
+                                    }
+                                }
+                            });
+                    } catch (e) { }
+                }, 200);
+
+                $(document).ready(function () {
+
+                    if (!isResourceLoaded) {
+                        preserveAnchorTagOnFormTemp();
+                    }
+
+                    $("#fm1").submit(function () {
+                        $(":submit").attr("disabled", true);
+                        $(":submit").attr("value", i);
+                        return true;
+                    });
+                });
+
+                function preserveAnchorTagOnFormTemp() {
+                    $('#fm1').submit(function () {
+                        var location = self.document.location;
+                        var hash = decodeURIComponent(location.hash);
+
+                        if (hash != undefined && hash != '' && hash.indexOf('#') === -1) {
+                            hash = '#' + hash;
+                        }
+
+                        var action = $('#fm1').attr('action');
+                        if (action == undefined) {
+                            action = location.href;
+                        } else {
+                            var qidx = location.href.indexOf('?');
+                            if (qidx != -1) {
+                                var queryParams = location.href.substring(qidx);
+                                action += queryParams;
+                            }
+                        }
+                        action += hash;
+                        $('#fm1').attr('action', action);
+
+                    });
+                }
+            </script>
+
+        </div>
+    </div>
+        </section>
+        </div>
+</div>
+    </main>
+</div>
+
+<footer class="py-4 d-flex justify-content-center cas-footer flex-column text-center">
+    <div>
+        <span>Copyright © <script>document.write( new Date().getFullYear() );</script>2023 The President and Fellows of Harvard College</span>  | <a href="http://accessibility.harvard.edu/" target="_blank">Accessibility</a> | <a href="https://accessibility.huit.harvard.edu/digital-accessibility-policy" target="_blank">Digital Accessibility</a> | <a href="https://huit.harvard.edu/harvard-key/privacy" target="_blank">Privacy</a>  | <a href="https://huit.harvard.edu/harvard-key" target="_blank">Help</a>
+    </div>
+    <div class="flex-break"></div>
+    <div>
+        The HarvardKey system, and the systems, data, and other resources that require HarvardKey authentication for access, are only for
+        legitimate Harvard University users. Use may be monitored, and improper use of the HarvardKey system or those resources may result in
+        disciplinary action and civil and criminal charges.
+    </div>
+</footer>
+
+
+</body></html>
